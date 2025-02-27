@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Spinner</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .spinner-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+        }
+        .spinner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 3s ease-out;
+        }
+        .spinner div {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background: conic-gradient(
+                red 0deg 72deg, 
+                orange 72deg 144deg, 
+                yellow 144deg 216deg, 
+                blue 216deg 288deg, 
+                green 288deg 360deg
+            );
+            border-radius: 50%;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 30px solid black;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="spinner-container">
+        <div class="arrow"></div>
+        <div class="spinner" id="spinner">
+            <div></div>
+        </div>
+    </div>
+    
+    <button onclick="spin()">Spin</button>
+
+    <script>
+        function spin() {
+            let degrees = 1440 + Math.floor(Math.random() * 360); // At least 4 full spins + random angle
+            document.getElementById("spinner").style.transform = `rotate(${degrees}deg)`;
+        }
+    </script>
+
+</body>
+</html>
